@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Drawing Area</title>
+<!-- You can add your style here rather than in an external style sheet. -->
+<style>
+	canvas {
+	    border:5px solid #d3d3d3;
+	    background-color: #f1f1f1;
+	    display: block;
+			width: "80%";
+			height:"80%";
+	}
+</style>
+</head>
+<body>
+    <!-- DO NOT MODIFY THIS HTML -->
+    <canvas id = "myCanvas" width = "350" height = "500"  ></canvas>
+    <input type = "color" id = "picker"/>
+</body>
+
+
+<script>
+
+	var canvas = document.querySelector("#myCanvas");
+	var ctx = canvas.getContext("2d");
+	var color = "red"
+	draw();
+	var pen = true;
+
+	function draw(posx, posy){
+			if (pen == true) {
+				ctx.fillStyle = color;
+				console.log("i am drawing!!!")
+				ctx.beginPath();
+				ctx.arc(posx,posy,10,0,2 * Math.PI);
+				ctx.fill();
+			}
+			else {
+				console.log("not drawing")
+			}
+    }
+
+	myCanvas.addEventListener(
+		'mousemove', function (e) {
+			console.log("hey")
+			console.log(e.x) //want this in every function
+			draw(e.x, e.y);
+			})
+
+	window.addEventListener(
+		'keydown', function (e) {
+			// console.log(e) //want this in every function
+		      //find keycode in console
+		      //write a series of if statements to change the color
+					var code = e.keyCode;
+					if (code == 82) {
+						color = "red";
+					}
+					if (code == 66) {
+						color = "blue";
+					}
+					if (code == 71) {
+		  		color = "green";
+					}
+					if (code == 89) {
+						color = "yellow";
+}
+					if (code == 38) {
+						pen = false;
+						console.log("up")
+					}
+					if (code == 40) {
+							pen = true;
+							console.log("down")
+					}
+		 })
+
+	window.addEventListener(
+		'keydown', function (e){
+		console.log(e)
+		var code = event.keyCode;
+		if (code == 32){
+			canvas.width = canvas.width;
+}})
+
+let colorpicker = document.querySelector('#picker');
+colorpicker.addEventListener("change", function(e) {
+	console.log(this.value)
+	color = this.value;
+
+})
+
+
+
+
+</script>
+
+</html>
+
+
+
+<!-- height and width 80%
+ -->
